@@ -1,7 +1,7 @@
-import { Avatar, IconButton } from '@material-ui/core';
-import { AttachFile, InsertEmoticon, MoreVert, SearchOutlined, Send } from '@material-ui/icons';
+import { Avatar, IconButton, Tooltip } from '@material-ui/core';
+import { AttachFile, InsertEmoticon, MeetingRoom, MoreVert, SearchOutlined, Send } from '@material-ui/icons';
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import db from '../firebase';
 import './Chat.css';
 import { useStateValue } from './data/StateProvider';
@@ -18,8 +18,6 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
 
     const [{ user }, dispatch] = useStateValue();
-
-    console.log(user)
 
     useEffect(() => {
         if(roomId) {
@@ -60,6 +58,12 @@ const Chat = () => {
         }
     }
 
+    const history = useHistory();
+
+    const leaveRoom = () => {
+        history.push('/')
+    }
+
     return (
         <div className="chat">
             <div className="chat__header">
@@ -69,15 +73,18 @@ const Chat = () => {
                     <p>Created at 20, Dec 1997</p>
                 </div>
                 <div className="chat__headerRight">                   
-                    <IconButton>
+                    {/* <IconButton>
                         <SearchOutlined />
-                    </IconButton>
+                    </IconButton> */}
                     <IconButton>
                         <AttachFile />
                     </IconButton>
-                    <IconButton>
-                        <MoreVert />
-                    </IconButton>    
+                    <Tooltip title="Exit room">
+                        <IconButton onClick={leaveRoom}>
+                            <MeetingRoom />
+                        </IconButton>
+                    </Tooltip>
+                        
                 </div>
             </div>
             <div className="chat__body">
@@ -85,7 +92,8 @@ const Chat = () => {
                     <p className={user.displayName != message.displayName ? `chat__message` : `chat__message chat__reciever`}>
                         <span className="chat__name">{message.displayName}</span>
                         {message.message}
-                        <span className="chat__timestamp">{new Date(message.timest?.toDate()).toUTCString()}</span>
+                        <br></br>
+                        <span className="chat__timestamp">{new Date(message.timest?.toDate()).toLocaleTimeString()}</span>
                     </p>
                 ))}
                 

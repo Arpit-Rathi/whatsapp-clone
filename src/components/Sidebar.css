@@ -1,20 +1,21 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    flex: 0.35;
+    flex: 0.25;
     border-right: 1px solid lightgray;
 }
 
 .sidebar__header {
     display: flex;
     justify-content: space-between;
-    padding: 20px;
+    align-items: center;
+    padding: 10px 20px;
     color: gray;
 }
 
 .sidebar__right {
     display: flex;
-    justify-content: space-between;
+    justify-content: flex-end;
     align-items: center;
     min-width: 10vw;
 }

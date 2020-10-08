@@ -3,10 +3,13 @@ import { auth, provider } from '../firebase';
 import './Login.css';
 import { useDataValue, useStateValue } from './data/StateProvider';
 import { actionTypes } from './data/reducer';
+import { useHistory } from 'react-router-dom';
 
 const Login = () => {
 
     const [{} , dispatch] = useStateValue();
+
+    const history = useHistory();
 
     const signIn = () => {
         auth.signInWithPopup(provider)
@@ -15,6 +18,7 @@ const Login = () => {
                 type: actionTypes.SET_USER,
                 user: res.user
             })
+            history.push('/');
         })
         .catch(err => alert(err));  
     }
@@ -23,7 +27,7 @@ const Login = () => {
         <div className="login">
             <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/WhatsApp.svg/598px-WhatsApp.svg.png"></img>
             <h1>Login to whatsapp rooms</h1>
-            <button onClick={signIn}>Login</button>
+            <button onClick={signIn}>Login with Google</button>
         </div>
     )
 }

@@ -12,20 +12,21 @@ function App() {
 
   return (
     <div className="app">
+      <Router>
         {!user ? (
           <Login />
         ) : (
           <div className="app__body">
-            <Router>
+            
               <Sidebar />
               <Switch>
                 <Route path="/rooms/:roomId">
                   <Chat />
-                </Route>            
+                </Route>           
               </Switch>
-            </Router>
           </div>
         )}
+        </Router>
     </div>
   );
 }

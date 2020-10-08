@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import db from '../firebase';
 import './SidebarChat.css';
+import LinesEllipsis from 'react-lines-ellipsis'
 
 const SidebarChat = ({ addNewChat, name, id}) => {
 
@@ -29,7 +30,13 @@ const SidebarChat = ({ addNewChat, name, id}) => {
                 <Avatar src={`https://avatars.dicebear.com/api/human/${id}.svg`} />
                 <div className="sidebarChat__info">
                     <h2>{name}</h2>
-                    <p>{messages.length > 0 ? messages[0]?.message : "Chat empty"}</p>
+                    <LinesEllipsis 
+                    text={messages.length > 0 ? messages[0]?.message : "Chat empty"}
+                    maxLine={2}
+                    ellipsis="..."
+                    trimRight
+                    component="p"
+                    />
                 </div>
             </div>
         </Link>

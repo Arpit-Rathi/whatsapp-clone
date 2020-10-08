@@ -1,5 +1,5 @@
 .login {
-    width: 50vw;
+    width: 40vw;
     height: 50vh;
     padding: 40px;
     display: flex;
@@ -16,7 +16,7 @@
 }
 
 .login > img {
-    width: 20vw;
+    width: 15vw;
     object-fit: contain;
 }
 
