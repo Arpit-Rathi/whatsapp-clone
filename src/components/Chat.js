@@ -6,6 +6,7 @@ import db from '../firebase';
 import './Chat.css';
 import { useStateValue } from './data/StateProvider';
 import firebase from 'firebase';
+import Picker from 'emoji-picker-react';
 
 const Chat = () => {
 
@@ -18,6 +19,8 @@ const Chat = () => {
     const [messages, setMessages] = useState([]);
 
     const [{ user }, dispatch] = useStateValue();
+
+    const [chooseEmoji, setChooseEmoji] = useState(false);
 
     useEffect(() => {
         if(roomId) {
@@ -54,8 +57,15 @@ const Chat = () => {
                 timest: firebase.firestore.FieldValue.serverTimestamp(),
                 displayName: user.displayName
             })
-            setInput('')
+            setInput('');
+            setChooseEmoji(false);
         }
+    }
+
+    const updateEmoji = (event, emojiObject) => {
+        console.log(event);
+        console.log(emojiObject);
+        setInput(input+emojiObject.emoji)
     }
 
     const history = useHistory();
@@ -75,10 +85,10 @@ const Chat = () => {
                 <div className="chat__headerRight">                   
                     {/* <IconButton>
                         <SearchOutlined />
-                    </IconButton> */}
+                    </IconButton>
                     <IconButton>
                         <AttachFile />
-                    </IconButton>
+                    </IconButton> */}
                     <Tooltip title="Exit room">
                         <IconButton onClick={leaveRoom}>
                             <MeetingRoom />
@@ -90,23 +100,24 @@ const Chat = () => {
             <div className="chat__body">
                 {messages.map(message => (
                     <p className={user.displayName != message.displayName ? `chat__message` : `chat__message chat__reciever`}>
-                        <span className="chat__name">{message.displayName}</span>
+                        <span className="chat__name">{message.displayName.split(' ')[0]}</span>
                         {message.message}
                         <br></br>
-                        <span className="chat__timestamp">{new Date(message.timest?.toDate()).toLocaleTimeString()}</span>
+                        <span className="chat__timestamp">{new Date(message.timest?.toDate()).toTimeString()}</span>
                     </p>
                 ))}
                 
             </div>
+            {chooseEmoji ? <Picker onEmojiClick={updateEmoji} disableSearchBar={true} disableSkinTonePicker={true} /> : null}
             <div className="chat__footer">
-                <IconButton>
+                <IconButton onClick={() => setChooseEmoji(!chooseEmoji)}>
                     <InsertEmoticon />
                 </IconButton>
                 <form>
                     <input placeholder="Enter your message" value={input} onChange={handleInput}></input>
                     <button onClick={sendMessage}>Send a message</button>
                 </form>
-                <IconButton>
+                <IconButton onClick={sendMessage}>
                     <Send />
                 </IconButton>                
             </div>

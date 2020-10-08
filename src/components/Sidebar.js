@@ -70,7 +70,7 @@ const Sidebar = () => {
             <div className="sidebar__search">
                 <div className="sidebar__searchContainer">
                     <SearchOutlined />
-                    <input placeholder="Search for chat" value={searchRoom} onChange={e => setSearchRoom(e.target.value)} ></input>
+                    <input placeholder="Search for your room" value={searchRoom} onChange={e => setSearchRoom(e.target.value)}></input>
                 </div>
             </div>
             <div className="sidebar__chat">
