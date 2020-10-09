@@ -1,8 +1,10 @@
 .sidebar {
     display: flex;
     flex-direction: column;
-    flex: 0.25;
-    border-right: 1px solid lightgray;
+    flex: 0.30;
+    /* border-right: 1px solid lightgray; */
+    border-right: 1px solid #323739;
+    background-color: #131c21;
 }
 
 .sidebar__header {
@@ -11,6 +13,8 @@
     align-items: center;
     padding: 10px 20px;
     color: gray;
+    border-bottom: 1px solid #323739;
+    background-color: #2A2f32;
 }
 
 .sidebar__right {
@@ -20,19 +24,26 @@
     min-width: 10vw;
 }
 
+.sidebar__right .MuiSvgIcon-root {
+    color: grey;
+}
+
 .sidebar__search {
     display: flex;
     align-items: center;
-    background-color: #f6f6f6;
+    /* background-color: #f6f6f6; */
+    background-color: #131c21;
     height: 39px;
     padding: 10px;
+    border-bottom: 1px solid #323739;
 }
 
 .sidebar__searchContainer {
     display: flex;
     align-items: center;
     height: 35px;
-    background-color: white;
+    /* background-color: white; */
+    background-color: #323739;
     border-radius: 20px;
     width: 100%;
 }
@@ -42,6 +53,8 @@
     margin-left: 10px;
     outline: none;
     width: 80%;
+    background-color: #323739;
+    color: #dadbd3;
 }
 
 .sidebar__searchContainer > .MuiSvgIcon-root {
@@ -51,7 +64,8 @@
 
 .sidebar__chat {
     flex: 1;
-    background-color: white;
+    /* background-color: white; */
+    background-color: #131c21;
     overflow-y: auto;
 }
 

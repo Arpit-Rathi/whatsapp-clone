@@ -1,5 +1,6 @@
 .app {
     background-color: #dadbd3;
+    background-color: #090e11;
     height: 100vh;
     display: grid;
     place-items: center;
@@ -7,9 +8,10 @@
 
 .app__body {
     display: flex;
-    width: 70vw;
-    max-width: 70vw;
-    height: 90vh;
-    background-color: #ededed;
+    width: 90vw;
+    max-width: 90vw;
+    height: 95vh;
+    /* background-color: #ededed; */
+    background-color: #2a2f32;
     box-shadow: -1px 4px 20px -6px rgba(0, 0, 0, 0.5);
 }
